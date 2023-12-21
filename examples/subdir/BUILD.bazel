@@ -1,0 +1,22 @@
+load("//:xarify.bzl", "xar_binary")
+
+sh_binary(
+    name = "test",
+    srcs = ["test.sh"],
+)
+
+xar_binary(
+    name = "test_xar",
+    src = ":test_py",
+    main = ":test_py",
+)
+
+py_binary(
+    name = "test_py",
+    srcs = ["test.py"],
+    main = "test.py",
+    deps = [
+        "//otherdir:libbar",
+        "//examples/subdir/libfoo:foobar_lib",
+    ],
+)

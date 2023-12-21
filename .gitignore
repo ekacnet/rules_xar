@@ -1,0 +1,6 @@
+bazel-bin
+bazel-out
+MODULE.bazel.lock
+bazel-rules_xar
+bazel-testlogs
+*.pyc

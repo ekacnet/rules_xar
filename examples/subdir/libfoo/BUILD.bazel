@@ -1,0 +1,8 @@
+py_library(
+    name = "foobar_lib",
+    srcs = [
+        "foobar.py",
+        "foofoo.py",
+    ],
+    visibility=['//visibility:public'],
+)
