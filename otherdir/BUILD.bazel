@@ -1,0 +1,5 @@
+py_library(
+    name = "libbar",
+    srcs = ["bar.py"],
+    visibility=['//visibility:public'],
+)
