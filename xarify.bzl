@@ -38,13 +38,13 @@ mv runfiles "$main.runfiles"
 rm "$zip_file"
 sed -i 's/args = sys.argv.*/args = sys.argv[2:]/' "$main"
 rm "xar_exec_wrapper"
-{cmd} --raw  . --raw-executable "$(basename $wrapper)" --output "$output"
+{cmd} --raw  . --raw-executable "$(basename $wrapper)" --output "$output" &>/dev/null
 """.format(cmd = make_xar_cmd)
 
 def _xar_binary_impl(ctx):
-
     # We will use the python_zil_file that py_binary _can_ generate_
     python_zip = ctx.attr.src[OutputGroupInfo]["python_zip_file"].to_list()[0]
+
     # Find the main entry point
     main_file = ctx.attr.main.files_to_run.executable
     if main_file not in ctx.attr.src.data_runfiles.files.to_list():
@@ -99,7 +99,7 @@ def _xar_binary_impl(ctx):
     for import_root in import_roots:
         print(import_root)
 
-    all_inputs = depset(transitive=[d for d in [depset(extra_inputs), ctx.attr.src[OutputGroupInfo]["python_zip_file"]]])
+    all_inputs = depset(transitive = [d for d in [depset(extra_inputs), ctx.attr.src[OutputGroupInfo]["python_zip_file"]]])
     ctx.actions.run(
         inputs = all_inputs,
         outputs = [ctx.outputs.executable],

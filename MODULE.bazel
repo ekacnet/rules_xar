@@ -4,3 +4,15 @@
 #
 # For more details, please check https://github.com/bazelbuild/bazel/issues/18958
 ###############################################################################
+module(
+    name = "rules_xar",
+    repo_name = "com_github_ekacnet",
+)
+
+bazel_dep(name = "rules_python", version = "0.27.1")
+
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(
+    is_default = True,
+    python_version = "3.11",
+)

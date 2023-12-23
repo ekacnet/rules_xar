@@ -1,0 +1,13 @@
+load("//:xarify.bzl", "xar_binary")
+
+xar_binary(
+    name = "test_simple_xar",
+    src = ":test_simple_py",
+    main = ":test_simple_py",
+)
+
+py_binary(
+    name = "test_simple_py",
+    srcs = ["test.py"],
+    main = "test.py",
+)
