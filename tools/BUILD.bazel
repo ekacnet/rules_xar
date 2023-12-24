@@ -1,0 +1,8 @@
+
+package(default_visibility = ["//visibility:public"])
+
+py_binary(
+    name = "make_xar_wrapper",
+    srcs = ["make_xar_wrapper.py"],
+    main = "make_xar_wrapper.py",
+)
