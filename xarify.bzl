@@ -41,7 +41,7 @@ def _xar_binary_impl(ctx):
     # Assemble command line for .xar compiler
     args = [
         make_xar_name,
-        "0",
+        ctx.attr.external_python_prefix,
         python_zip.path,
         main_file.path,
         tgt_exec_wrapper.path,
@@ -77,6 +77,10 @@ xar_binary = rule(
           executable = True,
           cfg = "exec",
         ),
+        "external_python_prefix": attr.string(
+          doc = "path and file prefix for the python to use instead of the embbeded one",
+          default = "",
+        )
 
     },
     executable = True,
