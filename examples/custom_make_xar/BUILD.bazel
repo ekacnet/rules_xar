@@ -3,6 +3,12 @@ load("//:xarify.bzl", "xar_binary")
 xar_binary(
     name = "test_simple_xar",
     main = ":test_simple_py",
+    make_xar = ":make_xar2",
+)
+
+sh_binary(
+    name = "make_xar2",
+    srcs = ["make_xar2.sh"],
 )
 
 py_binary(

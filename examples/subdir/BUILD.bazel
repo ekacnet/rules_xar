@@ -2,7 +2,6 @@ load("//:xarify.bzl", "xar_binary")
 
 xar_binary(
     name = "test_xar",
-    src = ":test_py",
     main = ":test_py",
 )
 
