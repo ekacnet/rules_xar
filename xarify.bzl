@@ -47,11 +47,11 @@ def _xar_binary_impl(ctx):
         tgt_exec_wrapper.path,
         ctx.outputs.executable.path,
     ]
-
+    output = ctx.actions.declare_file(ctx.label.name)
     all_inputs = depset(transitive = [d for d in [depset(extra_inputs), ctx.attr.main[OutputGroupInfo]["python_zip_file"]]])
     ctx.actions.run(
         inputs = all_inputs,
-        outputs = [ctx.outputs.executable],
+        outputs = [output],
         progress_message = "Building xar file %s" % ctx.label,
         executable = ctx.executable._make_xar_wrapper,
         arguments = args,
@@ -59,8 +59,7 @@ def _xar_binary_impl(ctx):
         mnemonic = "MakeXar",
     )
 
-    # .xar file itself has no runfiles and no providers
-    return []
+    return [DefaultInfo(executable = output)]
 
 xar_binary = rule(
     implementation = _xar_binary_impl,

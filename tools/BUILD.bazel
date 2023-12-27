@@ -1,8 +1,14 @@
-
 package(default_visibility = ["//visibility:public"])
 
 py_binary(
     name = "make_xar_wrapper",
     srcs = ["make_xar_wrapper.py"],
     main = "make_xar_wrapper.py",
+)
+
+py_test(
+    name = "make_xar_wrapper_test",
+    timeout = "short",
+    srcs = ["make_xar_wrapper_test.py"],
+    deps = [":make_xar_wrapper"],
 )

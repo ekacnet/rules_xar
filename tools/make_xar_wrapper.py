@@ -79,7 +79,6 @@ def main():
         shutil.rmtree(python_dir)
 
     shutil.move("runfiles", f"{main_file}.runfiles")
-
     for f in ["__main__.py", "__init__.py"]:
         pathlib.Path(f).unlink()
 
@@ -95,4 +94,5 @@ def main():
     subprocess.run(args, capture_output=True)
 
 
-main()
+if __name__ == "__main__":
+    main()
