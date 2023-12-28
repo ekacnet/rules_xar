@@ -1,7 +1,7 @@
-load("//:xarify.bzl", "xar_binary")
+load("//:xarify.bzl", "py_binary_xar")
 
-xar_binary(
-    name = "test_simple_xar",
+py_binary_xar(
+    name = "test_simple.xar",
     main = ":test_simple_py",
 )
 
