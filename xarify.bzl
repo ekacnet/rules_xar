@@ -5,8 +5,7 @@ def _gen_exec_wrapper(main_cmd):
 
 dir=$(dirname $0)
 name=$(basename "$1")
-# XAR is passing the name of "xar executable" as the first arguement, we skip it
-shift
+# XAR is passing the name of "xar executable" as the first arguement
 exec "$dir"/{cmd} "$@" """.format(cmd = main_cmd.basename)
 
 def _xar_binary_impl(ctx):
